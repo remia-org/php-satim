@@ -16,9 +16,11 @@ class SatimHttpClient
     protected $endpoint = 'https://cib.satim.dz/payment/rest';
     protected Client $httpClient;
 
-    public function __construct(bool $testMode = false)
+    public function __construct(bool $testMode = false, ?string $endpoint = null)
     {
-        if ($testMode) {
+        if ($endpoint !== null && trim($endpoint) !== '') {
+            $this->endpoint = rtrim($endpoint, '/');
+        } elseif ($testMode) {
             $this->endpoint = 'https://test.satim.dz/payment/rest';
         }
 

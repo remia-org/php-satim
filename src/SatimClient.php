@@ -17,9 +17,10 @@ class SatimClient
         protected string $password,
         protected string $terminalId,
         bool             $testMode,
+        ?string          $endpoint = null,
     )
     {
-        $this->httpClient = new SatimHttpClient(testMode: $testMode);
+        $this->httpClient = new SatimHttpClient(testMode: $testMode, endpoint: $endpoint);
     }
 
     public function registerOrder(SatimOrderBuilder $builder): SatimRegisterOrderResponse
